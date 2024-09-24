@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -15,7 +16,7 @@ class ContactController extends Controller
     {
         $contacts = Contact::query()->where('user_id',request()->user()->id)
         ->orderBy('created_at','desc');
-        return Inertia::render("Contact/Index");
+        return Inertia::render("Contact/Index", ['contacts'=> $contacts]);
     }
 
     /**
@@ -23,7 +24,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return "Create contact";
+        return Inertia::render("Contact/Create");
     }
 
     /**
@@ -31,7 +32,17 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([ 
+            
+                                    'name'=>'required|string|max:255',
+                                    'email'=>'required|string|email', 
+                                    'phone_number'=>'required|string'
+                                ]);
+
+        Contact::create(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number,'user_id' => request()->user()->id]);
+
+
+        return redirect()->to('/contact')->with('message', 'Contact Created Successfully');
     }
 
     /**

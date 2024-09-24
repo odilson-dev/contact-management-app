@@ -33,14 +33,14 @@
                                 class="px-2 oy-1 text-sm bg-blue-300 text-dark me-2 rounded inline-block"
                                 >Show</Link
                             >
-                            <!-- <Link
-                                :href="route('contact.edit')"
+                            <Link
+                                :href="route('contact.create')"
                                 class="px-2 oy-1 text-sm bg-green-500 text-white me-2 rounded inline-block"
                                 >Add Contact</Link
-                            > -->
+                            >
                             <button
                                 type="submit"
-                                clase="px-2 oy-1 text-sm bg-danger-500 text-white me-2 rounded inline-block"
+                                class="px-2 oy-1 text-sm bg-danger-500 text-white me-2 rounded inline-block"
                             >
                                 Delete
                             </button>
