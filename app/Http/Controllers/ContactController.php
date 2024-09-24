@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {
@@ -12,7 +13,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return "Index contact";
+        $contacts = Contact::query()->where('user_id',request()->user()->id)
+        ->orderBy('created_at','desc');
+        return Inertia::render("Contact/Index");
     }
 
     /**
