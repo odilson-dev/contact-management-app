@@ -22,25 +22,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="py-2 px-4 border">1</td>
-                        <td class="py-2 px-4 border">Peter Harris</td>
-                        <td class="py-2 px-4 border">peterharris@gmail.com</td>
-                        <td class="py-2 px-4 border">+509 40234898</td>
+                    <tr v-for="(contact, index) in contacts" :key="index">
+                        <td class="py-2 px-4 border">{{ contact.id }}</td>
+                        <td class="py-2 px-4 border">{{ contact.name }}</td>
+                        <td class="py-2 px-4 border">{{ contact.email }}</td>
+                        <td class="py-2 px-4 border">
+                            {{ contact.phone_number }}
+                        </td>
                         <td class="py-2 px-4 border">
                             <Link
-                                :href="route('contact.create')"
+                                :href="route('contact.show', contact.id)"
                                 class="px-2 oy-1 text-sm bg-blue-300 text-dark me-2 rounded inline-block"
                                 >Show</Link
                             >
                             <Link
-                                :href="route('contact.create')"
+                                :href="route('contact.edit', contact.id)"
                                 class="px-2 oy-1 text-sm bg-green-500 text-white me-2 rounded inline-block"
-                                >Add Contact</Link
+                                >Edit</Link
                             >
                             <button
                                 type="submit"
-                                class="px-2 oy-1 text-sm bg-danger-500 text-white me-2 rounded inline-block"
+                                class="px-2 oy-1 text-sm bg-red-600 text-white me-2 rounded inline-block"
                             >
                                 Delete
                             </button>
@@ -55,4 +57,8 @@
 <script setup>
 import FrontendLayout from "@/Layouts/FrontendLayout.vue";
 import { Link, Head } from "@inertiajs/vue3";
+
+defineProps({
+    contacts: Array,
+});
 </script>

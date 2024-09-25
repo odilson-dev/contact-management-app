@@ -14,8 +14,13 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::query()->where('user_id',request()->user()->id)
-        ->orderBy('created_at','desc');
+        
+        $contacts = Contact::query()
+                        ->where('user_id', request()->user()->id)
+                        ->orderBy('created_at', 'asc')
+                        ->get() // Fetch the collection of contacts
+                        ->toArray(); // Convert the collection to an array
+
         return Inertia::render("Contact/Index", ['contacts'=> $contacts]);
     }
 
