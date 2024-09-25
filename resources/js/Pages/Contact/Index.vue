@@ -1,6 +1,12 @@
 <template>
     <Head title="Contacts" />
     <FrontendLayout>
+        <div
+            v-if="$page.props.flash.message"
+            class="alert bg-green-200 mt-4 mx-5 px-4 py-2"
+        >
+            {{ $page.props.flash.message }}
+        </div>
         <div class="mt-4 mx-4">
             <div class="flex justify-between">
                 <h5>Contact Lists</h5>

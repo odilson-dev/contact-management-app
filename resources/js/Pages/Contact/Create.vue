@@ -1,9 +1,7 @@
 <template>
     <Head title="Create Contact" />
     <FrontendLayout>
-        <div v-if="$page.props.flash.message" class="alert">
-        {{ $page.props.flash.message }}
-      </div>
+        
         <div class="mt-4 mx-4">
             <div class="flex justify-between">
                 <h5>Create Contact</h5>

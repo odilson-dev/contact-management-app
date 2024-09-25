@@ -78,7 +78,7 @@ class ContactController extends Controller
             'phone_number'=>'required|string'
         ]);
 
-        Contact::update(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number]);
+        $contact->update(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number]);
 
 
         return redirect()->to('/contact')->with('message', 'Contact Updated Successfully');
