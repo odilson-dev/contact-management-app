@@ -63,7 +63,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return "Edit contact";
+        return Inertia::render("Contact/Edit", ['contact'=> $contact]);
     }
 
     /**
@@ -71,7 +71,17 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $request->validate([ 
+            
+            'name'=>'required|string|max:255',
+            'email'=>'required|string|email', 
+            'phone_number'=>'required|string'
+        ]);
+
+        Contact::update(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number]);
+
+
+        return redirect()->to('/contact')->with('message', 'Contact Updated Successfully');
     }
 
     /**
