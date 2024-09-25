@@ -13,11 +13,22 @@
                     >Back</Link
                 >
             </div>
-            <div>
-                <h1>ID:{{ contact.id }}</h1>
-                <h1>Name: {{ contact.name }}</h1>
-                <h1>Email: {{ contact.email }}</h1>
-                <h1>Phone number: {{ contact.phone_number }}</h1>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-6">
+                    <div class="mb-3">
+                        <label>Name</label>
+
+                        <p>{{ contact.name }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <p>{{ contact.email }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label>Phone number</label>
+                        <p>{{ contact.phone_number }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </FrontendLayout>
@@ -25,6 +36,8 @@
 
 <script setup>
 import { Link, Head } from "@inertiajs/vue3";
+
+import FrontendLayout from "@/Layouts/FrontendLayout.vue";
 
 defineProps({
     contact: Object,
