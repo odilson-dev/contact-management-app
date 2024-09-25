@@ -89,6 +89,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->to('/contact')->with('message', 'Contact Deleted Successfully');
     }
 }

@@ -24,7 +24,7 @@
                         <th class="py-2 px-4 text-left border">Name</th>
                         <th class="py-2 px-4 text-left border">Email</th>
                         <th class="py-2 px-4 text-left border">Phone</th>
-                        <th class="py-2 px-4 text-left border">Action</th>
+                        <th class="py-2 px-4 text-left border">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +48,7 @@
                             >
                             <button
                                 type="submit"
+                                @click="deleteContact(contact.id)"
                                 class="px-2 oy-1 text-sm bg-red-600 text-white me-2 rounded inline-block"
                             >
                                 Delete
@@ -62,8 +63,14 @@
 
 <script setup>
 import FrontendLayout from "@/Layouts/FrontendLayout.vue";
-import { Link, Head } from "@inertiajs/vue3";
+import { Link, Head, useForm } from "@inertiajs/vue3";
 
+const form = useForm({});
+const deleteContact = (contactId) => {
+    if (confirm("Are you sure you want to delete this contact?")) {
+        form.delete(route("contact.destroy", contactId));
+    }
+};
 defineProps({
     contacts: Array,
 });
