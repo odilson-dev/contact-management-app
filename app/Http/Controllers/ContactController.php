@@ -55,7 +55,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return "Show contact";
+        return Inertia::render("Contact/Show", ['contact'=> $contact]);
     }
 
     /**
