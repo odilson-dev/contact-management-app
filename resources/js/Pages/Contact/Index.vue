@@ -1,6 +1,12 @@
 <template>
     <Head title="Contacts" />
-    <FrontendLayout>
+    <AuthenticatedLayout>
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Contact List
+            </h2>
+        </template>
+
         <div
             v-if="$page.props.flash.message"
             class="alert bg-green-200 mt-4 mx-5 px-4 py-2"
@@ -9,7 +15,7 @@
         </div>
         <div class="mt-4 mx-4">
             <div class="flex justify-between">
-                <h5>Contact Lists</h5>
+                <h5></h5>
                 <Link
                     :href="route('contact.create')"
                     class="bg-blue-500 text-white p-3 rounded mb-4"
@@ -22,7 +28,6 @@
                     <tr>
                         <th class="py-2 px-4 text-left border">Id</th>
                         <th class="py-2 px-4 text-left border">Name</th>
-                        <th class="py-2 px-4 text-left border">Email</th>
                         <th class="py-2 px-4 text-left border">Phone</th>
                         <th class="py-2 px-4 text-left border">Actions</th>
                     </tr>
@@ -31,7 +36,6 @@
                     <tr v-for="(contact, index) in contacts" :key="index">
                         <td class="py-2 px-4 border">{{ contact.id }}</td>
                         <td class="py-2 px-4 border">{{ contact.name }}</td>
-                        <td class="py-2 px-4 border">{{ contact.email }}</td>
                         <td class="py-2 px-4 border">
                             {{ contact.phone_number }}
                         </td>
@@ -58,11 +62,11 @@
                 </tbody>
             </table>
         </div>
-    </FrontendLayout>
+    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import FrontendLayout from "@/Layouts/FrontendLayout.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Link, Head, useForm } from "@inertiajs/vue3";
 
 const form = useForm({});

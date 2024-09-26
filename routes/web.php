@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth','verified'])->group(function(){
+   
     Route::resource('contact', ContactController::class);
 });
 Route::middleware('auth')->group(function () {

@@ -40,11 +40,10 @@ class ContactController extends Controller
         $request->validate([ 
             
                                     'name'=>'required|string|max:255',
-                                    'email'=>'required|string|email', 
                                     'phone_number'=>'required|string'
                                 ]);
 
-        Contact::create(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number,'user_id' => request()->user()->id]);
+        Contact::create(['name'=> $request->name,  'phone_number'=> $request->phone_number,'user_id' => request()->user()->id]);
 
 
         return redirect()->to('/contact')->with('message', 'Contact Created Successfully');
@@ -73,12 +72,11 @@ class ContactController extends Controller
     {
         $request->validate([ 
             
-            'name'=>'required|string|max:255',
-            'email'=>'required|string|email', 
+            'name'=>'required|string|max:255', 
             'phone_number'=>'required|string'
         ]);
 
-        $contact->update(['name'=> $request->name, 'email'=> $request->email, 'phone_number'=> $request->phone_number]);
+        $contact->update(['name'=> $request->name, 'phone_number'=> $request->phone_number]);
 
 
         return redirect()->to('/contact')->with('message', 'Contact Updated Successfully');
