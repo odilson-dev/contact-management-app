@@ -40,6 +40,14 @@ class ContactCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
+        CRUD::modifyColumn('user_id', [
+            'name' => 'user_id', // Refers to the foreign key in the contacts table
+            'label' => 'Owner', // The label for the column
+            'type' => 'select', // Use 'select' type to display a related model's attribute
+            'entity' => 'user', // The relationship method in the Contact model
+            'attribute' => 'name', // The attribute from the related User model to be displayed
+            'model' => "App\Models\User", // The related User model
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -57,6 +65,17 @@ class ContactCrudController extends CrudController
     {
         // CRUD::setValidation(ContactRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
+        CRUD::addField([
+            'name' => 'user_id', 
+            'label' => 'User',
+            'type' => 'select',
+            'entity' => 'user', 
+            'model' => "App\Models\User", 
+            'attribute' => 'name', 
+            'options'   => (function ($query) {
+                return $query->orderBy('name', 'ASC')->get();
+            }), 
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax:
